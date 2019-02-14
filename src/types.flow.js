@@ -33,6 +33,12 @@ type $FragmentRef<T> = {
   +$fragmentRefs: $PropertyType<T, '$refType'>,
 };
 
+/*::
+
+// So, there is currently an issue with Babel Parser which turns these lines
+// into complete mess when targeting Flow. Issue reported:
+//   https://github.com/babel/babel/issues/9514
+
 // prettier-ignore
 export type $RelayProps<Props, RelayPropT> = $ObjMap<
   $Diff<Props, { relay: RelayPropT | void }>,
@@ -50,3 +56,5 @@ export type $RelayProps<Props, RelayPropT> = $ObjMap<
   // see: https://github.com/sibelius/relay-modern-network-deep-dive/tree/master/flow-typed
   (<T>(T) => T)
 >
+
+*/
