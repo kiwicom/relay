@@ -15,7 +15,6 @@ import createNetworkFetcher from '../fetchers/createNetworkFetcher';
  */
 export default function persistOperation(operationId: string, text: string) {
   return commitMutation(
-    // $FlowExpectedError: `createEnvironment` should not be used directly but we are not in React context here
     createEnvironment({
       logger: false,
       fetchFn: createNetworkFetcher('https://graphql.kiwi.com/', {
