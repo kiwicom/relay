@@ -40,11 +40,7 @@ export default function persistOperation(operationId: string, text: string) {
         process.exitCode = 1;
       },
       onCompleted: (response, errors) => {
-        logger.error(
-          'TODO: onCompleted',
-          String(JSON.stringify(response)),
-          String(errors),
-        );
+        logger.error('TODO: onCompleted', String(JSON.stringify(response)), String(errors));
         process.exitCode = 2;
       },
     },
