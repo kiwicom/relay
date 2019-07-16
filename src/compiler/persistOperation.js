@@ -11,7 +11,7 @@ import createNetworkFetcher from '../fetchers/createNetworkFetcher';
  * This mutation persist operations to our GraphQL Persistent Storage for
  * later direct usage. Update the Relay generated files whith this command:
  *
- * yw @kiwicom/relay relay-compiler --src=./src/compiler --schema=../../incubator/graphql.kiwi.com.schema
+ * yw @kiwicom/relay relay-compiler --src=./src/compiler --schema=../../incubator/graphql.kiwi.com.schema.gql
  */
 export default function persistOperation(operationId: string, text: string) {
   return commitMutation(
