@@ -1,6 +1,7 @@
 // @flow
 
-import * as React from 'react';
+// eslint-disable-next-line import/no-unresolved
+import * as React from 'react'; // React is a peer dependency
 import ReactTestRenderer from 'react-test-renderer';
 import { createMockEnvironment, generateAndCompile, MockPayloadGenerator } from 'relay-test-utils';
 

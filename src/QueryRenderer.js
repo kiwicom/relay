@@ -1,6 +1,7 @@
 // @flow
 
-import React from 'react';
+// eslint-disable-next-line import/no-unresolved
+import React from 'react'; // React is a peer dependency
 import { QueryRenderer as RelayQueryRenderer } from 'react-relay';
 import { invariant, sprintf } from '@kiwicom/js';
 import { TimeoutError, ResponseError } from '@kiwicom/fetch';
