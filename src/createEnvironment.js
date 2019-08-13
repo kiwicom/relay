@@ -29,6 +29,7 @@ type Options = {|
   // enables/disables `RelayNetworkLogger`
   +logger?: boolean,
   +graphiQLPrinter?: (request: { +text: string, ... }, variables: Variables) => string,
+  +store?: Store,
 |};
 
 type NormalizationSplitOperation = {|
