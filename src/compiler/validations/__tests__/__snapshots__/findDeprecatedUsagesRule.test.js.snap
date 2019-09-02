@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches expected output: deprecatedAlias.graphql 1`] = `
+~~~~~~~~~~ INPUT ~~~~~~~~~~
+{
+  alias: fieldDeprecated1
+}
+
+~~~~~~~~~~ OUTPUT ~~~~~~~~~~
+THROWN EXCEPTION:
+
+The field QueryRoot.fieldDeprecated1 is deprecated. Use field "fieldString" instead.
+
+GraphQL request:2:3
+1 | {
+2 |   alias: fieldDeprecated1
+  |   ^
+3 | }
+`;
+
+exports[`matches expected output: multipleDeprecated.graphql 1`] = `
+~~~~~~~~~~ INPUT ~~~~~~~~~~
+{
+  fieldDeprecated1
+  fieldDeprecated2
+}
+
+~~~~~~~~~~ OUTPUT ~~~~~~~~~~
+THROWN EXCEPTION:
+
+The field QueryRoot.fieldDeprecated1 is deprecated. Use field "fieldString" instead.
+
+GraphQL request:2:3
+1 | {
+2 |   fieldDeprecated1
+  |   ^
+3 |   fieldDeprecated2
+`;
+
+exports[`matches expected output: simple.graphql 1`] = `
+~~~~~~~~~~ INPUT ~~~~~~~~~~
+{
+  fieldString
+}
+
+~~~~~~~~~~ OUTPUT ~~~~~~~~~~
+PASSED
+`;
+
+exports[`matches expected output: simpleWithDeprecated.graphql 1`] = `
+~~~~~~~~~~ INPUT ~~~~~~~~~~
+{
+  fieldString
+  fieldDeprecated1
+}
+
+~~~~~~~~~~ OUTPUT ~~~~~~~~~~
+THROWN EXCEPTION:
+
+The field QueryRoot.fieldDeprecated1 is deprecated. Use field "fieldString" instead.
+
+GraphQL request:3:3
+2 |   fieldString
+3 |   fieldDeprecated1
+  |   ^
+4 | }
+`;
