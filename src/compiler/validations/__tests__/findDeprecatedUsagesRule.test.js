@@ -11,5 +11,5 @@ generateTestsFromFixtures(path.join(__dirname, 'fixtures', 'findDeprecatedUsages
   const documentAST = parse(query);
   const findDeprecatedUsagesRule = createFindDeprecatedUsagesRule(true);
   const errors = validate(testSchema, documentAST, [findDeprecatedUsagesRule]);
-  return errors.length === 0 ? 'PASSED' : errors;
+  return errors.length === 0 ? 'PASSED ✅' : errors;
 });
