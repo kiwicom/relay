@@ -13,7 +13,7 @@ export default function createFindDeprecatedUsagesRule(throwErrors: boolean = tr
           if (throwErrors) {
             throw error;
           } else {
-            warning(false, error.message);
+            warning(false, '! %s', error.message);
           }
         });
       },
