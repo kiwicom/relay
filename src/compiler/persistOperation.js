@@ -3,13 +3,13 @@
 import logger from '@kiwicom/logger';
 
 import graphql from '../graphql';
-import commitMutation from '../commitMutation';
+import { commitMutation } from '../mutations';
 import createEnvironment from '../createEnvironment';
 import createNetworkFetcher from '../fetchers/createNetworkFetcher';
 
 /**
  * This mutation persist operations to our GraphQL Persistent Storage for
- * later direct usage. Update the Relay generated files whith this command:
+ * later direct usage. Update the Relay generated files with this command:
  *
  * yw @kiwicom/relay relay-compiler --src=./src/compiler --schema=../../incubator/graphql.kiwi.com.schema.gql
  */
