@@ -3,7 +3,7 @@
 import { sprintf } from '@kiwicom/js';
 import { ConsoleReporter } from 'relay-compiler';
 import { type ValidationContext, type OperationDefinitionNode } from 'graphql';
-import calculate, { THRESHOLD } from '@kiwicom/graphql-result-size';
+import { calculate, THRESHOLD, ThresholdError } from '@kiwicom/graphql-result-size';
 
 export default function createValidateQuerySizeRule(reporter: ConsoleReporter) {
   // Please note: these validations are being executed BEFORE Relay transforms take place!
@@ -16,6 +16,7 @@ export default function createValidateQuerySizeRule(reporter: ConsoleReporter) {
         for (const fragmentDefinition of collectFragments(node)) {
           fragmentDefinitions.push(fragmentDefinition);
         }
+        const unknownOperationPlaceholder = '<anonymous_operation>';
         try {
           const score = calculate(schema, {
             // fake `DocumentNode`
@@ -24,26 +25,30 @@ export default function createValidateQuerySizeRule(reporter: ConsoleReporter) {
           });
           if (score < THRESHOLD * 0.5) {
             reporter.reportMessage(
-              sprintf('💚 %s (score %s)', node.name?.value ?? '<anonymous operation>', score),
+              sprintf('💚 %s (score %s)', node.name?.value ?? unknownOperationPlaceholder, score),
             );
           } else {
             reporter.reportMessage(
               sprintf(
                 '🧡 %s (score %s, threshold %s)',
-                node.name?.value ?? '<anonymous operation>',
+                node.name?.value ?? unknownOperationPlaceholder,
                 score,
                 THRESHOLD,
               ),
             );
           }
-        } catch {
-          reporter.reportMessage(
-            sprintf(
-              '💔 %s - this operation could return too big result (threshold %s was reached)',
-              node.name?.value ?? '???',
-              THRESHOLD,
-            ),
-          );
+        } catch (error) {
+          if (error instanceof ThresholdError) {
+            reporter.reportMessage(
+              sprintf(
+                '💔 %s - this operation could return too big result (threshold %s was reached)',
+                node.name?.value ?? unknownOperationPlaceholder,
+                THRESHOLD,
+              ),
+            );
+          } else {
+            throw error;
+          }
         }
       },
     };
